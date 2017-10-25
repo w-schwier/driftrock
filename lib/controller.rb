@@ -1,35 +1,45 @@
 class Controller
-  attr_reader :data_fetcher, :command, :user_data, :purchase_data
+  attr_reader :data_fetcher, :calculator, :user_data, :purchase_data, :user_id, :user_email
 
-  def initialize(data_fetcher: DataFetcher.new, command: Command.new)
-    @command = command
+  def initialize(data_fetcher: DataFetcher.new, calculator: Calculator.new)
     @data_fetcher = data_fetcher
-    @user_data = []
-    @purchase_data = []
-
+    @calculator = calculator
   end
 
   def load_data
+    puts "Loading User Data"
     @user_data = self.data_fetcher.get_user_data
+    puts "Loading Purchase Data"
     @purchase_data = self.data_fetcher.get_purchase_data
   end
 
   def run(arguments)
     load_data
-    command = arguments[0]; user_email = arguments[1] if arguments[1]
+    command = arguments[0]; set_user_info(arguments[1]) if arguments[1]
     case command
     when "total_spend"
-      self.command.total_spend(user_email)
+      @calculator.total_spend(@user_id, @purchase_data)
     when "average_spend"
-      self.command.average_spend(user_email)
+      @calculator.average_spend(@user_id, @purchase_data)
     when "most_loyal"
-      self.command.most_loyal
+      get_user_email(@calculator.most_loyal(@purchase_data))
     when "highest_value"
-      self.command.highest_value
+      get_user_email(@calculator.highest_value(@purchase_data))
     when "most_sold"
-      self.command.most_sold
+      @calculator.most_sold(@purchase_data)
     else
-      puts "Please try again with a correct command"
+      puts "Please try again with a correct command..."
     end
+  end
+
+  private
+
+  def set_user_info(email)
+    @user_email = email
+    user_data.each { |user| @user_id = user['id'] if user['email'] == email }
+  end
+
+  def get_user_email(id)
+    user_data.each { |user| return user['email'] if user['id'] == id }
   end
 end

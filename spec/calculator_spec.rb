@@ -1,10 +1,7 @@
-require 'controller'
+require 'calculator'
 
-describe Controller do
-  let(:data_fetcher) { double :data_fetcher }
-  let(:calculator) { double :calculator }
-  subject(:controller) { described_class.new(data_fetcher: data_fetcher, calculator: calculator) }
-
+describe Calculator do
+  subject(:calculator) { described_class.new }
   user_data = [
     {"id"=>"0000-0000-0000-0000", "first_name"=>"Quincy", "last_name"=>"Schimmel", "phone"=>"186.301.6921 x948", "email"=>"schimmel_quincy@ernser.io"},
     {"id"=>"0000-0000-0000-0001", "first_name"=>"Henry", "last_name"=>"Terry", "phone"=>"636-387-6074 x690", "email"=>"terry_henry@doyle.io"},
@@ -13,7 +10,6 @@ describe Controller do
     {"id"=>"0000-0000-0000-0004", "first_name"=>"Keaton", "last_name"=>"Bahringer", "phone"=>"121-798-7807 x196", "email"=>"keaton.bahringer@moriettedicki.net"},
     {"id"=>"0000-0000-0000-0005", "first_name"=>"Eliseo", "last_name"=>"Zieme", "phone"=>"516.943.5559 x15170", "email"=>"eliseo.zieme@bosco.info"}
   ]
-
   purchase_data = [
     {"user_id"=>"0000-0000-0000-0000", "item"=>"example 1", "spend"=>"27.78"},
     {"user_id"=>"0000-0000-0000-0000", "item"=>"example 2", "spend"=>"54.5"},
@@ -21,27 +17,11 @@ describe Controller do
     {"user_id"=>"0000-0000-0000-0001", "item"=>"example 4", "spend"=>"54.5"},
     {"user_id"=>"0000-0000-0000-0002", "item"=>"Aerodynamic Copper Bench", "spend"=>"3.21"}
   ]
-
-  before do
-    allow(data_fetcher).to receive(:get_user_data)
-      .and_return(user_data)
-    allow(data_fetcher).to receive(:get_purchase_data)
-      .and_return(purchase_data)
+  it 'checks the right total spend is calculated' do
+    expect(calculator.total_spend("0000-0000-0000-0000", purchase_data)).to eq "£110.06"
   end
 
-  it 'checks user data has been loaded' do
-    controller.load_data
-    expect(controller.user_data).to eq user_data
+  it 'checks the correct average spend is calculated' do
+    expect(calculator.average_spend("0000-0000-0000-0000", purchase_data)).to eq "£36.69"
   end
-
-  it 'checks purchase data has been loaded' do
-    controller.load_data
-    expect(controller.purchase_data).to eq purchase_data
-  end
-
-  it 'checks id has been set correctly' do
-    controller.run(["", "schimmel_quincy@ernser.io"])
-    expect(controller.user_id).to eq "0000-0000-0000-0000"
-  end
-
 end

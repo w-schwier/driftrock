@@ -2,8 +2,7 @@ require 'controller'
 
 describe Controller do
   let(:data_fetcher) { double :data_fetcher }
-  let(:calculator) { double :calculator }
-  subject(:controller) { described_class.new(data_fetcher: data_fetcher, calculator: calculator) }
+  subject(:controller) { described_class.new(data_fetcher: data_fetcher) }
 
   user_data = [
     {"id"=>"0000-0000-0000-0000", "first_name"=>"Quincy", "last_name"=>"Schimmel", "phone"=>"186.301.6921 x948", "email"=>"schimmel_quincy@ernser.io"},
@@ -42,6 +41,28 @@ describe Controller do
   it 'checks id has been set correctly' do
     controller.run(["", "schimmel_quincy@ernser.io"])
     expect(controller.user_id).to eq "0000-0000-0000-0000"
+  end
+
+  it 'checks the right total spend is calculated' do
+    arguments = ["total_spend", "schimmel_quincy@ernser.io"]
+    expect(controller.run(arguments)).to eq "£110.06"
+  end
+
+  it 'checks the correct average spend is calculated' do
+    arguments = ["average_spend", "schimmel_quincy@ernser.io"]
+    expect(controller.run(arguments)).to eq "£36.69"
+  end
+
+  it 'checks correct user id is returned for most loyal' do #id is changed into email and returned in controller
+    expect(controller.run(["most_loyal"])).to eq "schimmel_quincy@ernser.io"
+  end
+
+  xit '' do
+
+    end
+
+  xit '' do
+
   end
 
 end

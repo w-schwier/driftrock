@@ -20,7 +20,7 @@ class DataFetcher
       data += @enteries
       page +=1
     end
+    @enteries = "reset"
     data
   end
-
 end

@@ -18,15 +18,16 @@ class Controller
     command = arguments[0]; set_user_info(arguments[1]) if arguments[1]
     case command
     when "total_spend"
-      @calculator.total_spend(@user_id, @purchase_data)
+      puts @calculator.total_spend(@user_id, @purchase_data); @calculator.total_spend(@user_id, @purchase_data)
     when "average_spend"
-      @calculator.average_spend(@user_id, @purchase_data)
+      puts @calculator.average_spend(@user_id, @purchase_data); @calculator.average_spend(@user_id, @purchase_data)
     when "most_loyal"
-      get_user_email(@calculator.most_loyal(@purchase_data))
+      id = @calculator.most_loyal(@purchase_data)
+      puts get_user_email(id); get_user_email(id)
     when "highest_value"
-      get_user_email(@calculator.highest_value(@purchase_data))
+      puts get_user_email(@calculator.highest_value(@purchase_data)); get_user_email(@calculator.highest_value(@purchase_data))
     when "most_sold"
-      @calculator.most_sold(@purchase_data)
+      puts @calculator.most_sold(@purchase_data); @calculator.most_sold(@purchase_data)
     else
       puts "Please try again with a correct command..."
     end
@@ -36,7 +37,7 @@ class Controller
 
   def set_user_info(email)
     @user_email = email
-    user_data.each { |user| @user_id = user['id'] if user['email'] == email }
+    user_data.each { |user| @user_id = user['id'] if user['email'] == @user_email }
   end
 
   def get_user_email(id)

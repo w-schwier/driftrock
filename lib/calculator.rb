@@ -11,8 +11,9 @@ class Calculator
   end
 
   def most_loyal(data)
-    return id
-
+    puts "Calulating most loyal"
+    ids = data.map {|item| item['user_id']}
+    ids.max_by { |i| ids.count(i) }
   end
 
   def highest_value(data)

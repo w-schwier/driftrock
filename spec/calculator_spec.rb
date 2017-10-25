@@ -24,4 +24,8 @@ describe Calculator do
   it 'checks the correct average spend is calculated' do
     expect(calculator.average_spend("0000-0000-0000-0000", purchase_data)).to eq "£36.69"
   end
+
+  it 'checks correct user id is returned for most loyal' do #id is changed into email and returned in controller
+    expect(calculator.most_loyal(purchase_data)).to eq "0000-0000-0000-0000"
+  end
 end

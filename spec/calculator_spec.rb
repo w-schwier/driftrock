@@ -15,7 +15,7 @@ describe Calculator do
     {"user_id"=>"0000-0000-0000-0000", "item"=>"example 2", "spend"=>"54.5"},
     {"user_id"=>"0000-0000-0000-0000", "item"=>"example 3", "spend"=>"27.78"},
     {"user_id"=>"0000-0000-0000-0001", "item"=>"example 4", "spend"=>"54.5"},
-    {"user_id"=>"0000-0000-0000-0002", "item"=>"Aerodynamic Copper Bench", "spend"=>"3.21"}
+    {"user_id"=>"0000-0000-0000-0002", "item"=>"example 4", "spend"=>"3.21"}
   ]
   it 'checks the right total spend is calculated' do
     expect(calculator.total_spend("0000-0000-0000-0000", purchase_data)).to eq "£110.06"
@@ -27,5 +27,13 @@ describe Calculator do
 
   it 'checks correct user id is returned for most loyal' do #id is changed into email and returned in controller
     expect(calculator.most_loyal(purchase_data)).to eq "0000-0000-0000-0000"
+  end
+
+  xit 'checks the correct highest value id is returned' do
+    expect(calculator.highest_value(purchase_data)).to eq "0000-0000-0000-0000"
+  end
+
+  it 'checks correct most sold item is returned' do #id is changed into email and returned in controller
+    expect(calculator.most_sold(purchase_data)).to eq "example 4"
   end
 end

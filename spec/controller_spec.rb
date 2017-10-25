@@ -18,7 +18,7 @@ describe Controller do
     {"user_id"=>"0000-0000-0000-0000", "item"=>"example 2", "spend"=>"54.5"},
     {"user_id"=>"0000-0000-0000-0000", "item"=>"example 3", "spend"=>"27.78"},
     {"user_id"=>"0000-0000-0000-0001", "item"=>"example 4", "spend"=>"54.5"},
-    {"user_id"=>"0000-0000-0000-0002", "item"=>"Aerodynamic Copper Bench", "spend"=>"3.21"}
+    {"user_id"=>"0000-0000-0000-0002", "item"=>"example 4", "spend"=>"3.21"}
   ]
 
   before do
@@ -57,12 +57,12 @@ describe Controller do
     expect(controller.run(["most_loyal"])).to eq "schimmel_quincy@ernser.io"
   end
 
-  xit '' do
+  xit 'checks the corrct email is returned for highest value' do
+    expect(controller.run(["highest_value"])).to eq "schimmel_quincy@ernser.io"
+  end
 
-    end
-
-  xit '' do
-
+  it 'returns the right item for highest sold item' do
+    expect(controller.run(["most_sold"])).to eq "example 4"
   end
 
 end

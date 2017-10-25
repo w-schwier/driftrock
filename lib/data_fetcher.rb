@@ -16,7 +16,7 @@ class DataFetcher
     page = 1
     data = []
     until @enteries == [] do
-      url = "https://driftrock-dev-test-2.herokuapp.com/#{type}?page=#{page}&per_page=2000"; response = HTTParty.get(url); @enteries = response.parsed_response['data']
+      url = "https://driftrock-dev-test-2.herokuapp.com/#{type}?page=#{page}&per_page=2000000000"; response = HTTParty.get(url); @enteries = response.parsed_response['data']
       data += @enteries
       page +=1
     end

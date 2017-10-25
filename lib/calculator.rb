@@ -12,8 +12,7 @@ class Calculator
 
   def most_loyal(data)
     puts "Calulating most loyal"
-    ids = data.map {|item| item['user_id']}
-    ids.max_by { |i| ids.count(i) }
+    get_highest('user_id', data)
   end
 
   def highest_value(data)
@@ -22,8 +21,8 @@ class Calculator
   end
 
   def most_sold(data)
-    return name
-
+    puts "Calulating most sold"
+    get_highest('item', data)
   end
 
   private
@@ -34,5 +33,9 @@ class Calculator
     data.each { |item| (@total += item['spend'].to_f) && (@count += 1) if item['user_id'] == id }
   end
 
-
+  # require 'pry'; binding.pry
+  def get_highest(type, data)
+    arr = data.map {|item| item[type]}
+    arr.group_by{|i| i}.max{|x,y| x[1].length <=> y[1].length}[0]
+  end
 end

@@ -18,22 +18,26 @@ class Controller
     command = arguments[0]; set_user_info(arguments[1]) if arguments[1]
     case command
     when "total_spend"
-      puts @calculator.total_spend(@user_id, @purchase_data); @calculator.total_spend(@user_id, @purchase_data)
+      puts_and_return(@calculator.total_spend(@user_id, @purchase_data))
     when "average_spend"
-      puts @calculator.average_spend(@user_id, @purchase_data); @calculator.average_spend(@user_id, @purchase_data)
+      puts_and_return(@calculator.average_spend(@user_id, @purchase_data))
     when "most_loyal"
       id = @calculator.most_loyal(@purchase_data)
-      puts get_user_email(id); get_user_email(id)
+      puts_and_return(get_user_email(id))
     when "highest_value"
-      puts get_user_email(@calculator.highest_value(@purchase_data)); get_user_email(@calculator.highest_value(@purchase_data))
+      puts_and_return(get_user_email(@calculator.highest_value(@purchase_data)))
     when "most_sold"
-      puts @calculator.most_sold(@purchase_data); @calculator.most_sold(@purchase_data)
+      puts_and_return(@calculator.most_sold(@purchase_data))
     else
       puts "Please try again with a correct command..."
     end
   end
 
   private
+
+  def puts_and_return(answer)
+    puts answer; answer
+  end
 
   def set_user_info(email)
     @user_email = email

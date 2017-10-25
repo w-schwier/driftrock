@@ -1,0 +1,3 @@
+class UserCalculator
+
+end

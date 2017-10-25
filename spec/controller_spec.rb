@@ -2,7 +2,8 @@ require 'controller'
 
 describe Controller do
   let(:data_fetcher) { double :data_fetcher }
-  subject(:controller) { described_class.new(data_fetcher: data_fetcher) }
+  let(:command) { double :command }
+  subject(:controller) { described_class.new(data_fetcher: data_fetcher, command: command) }
 
   user_data = [
     {"id"=>"0000-0000-0000-0000", "first_name"=>"Quincy", "last_name"=>"Schimmel", "phone"=>"186.301.6921 x948", "email"=>"schimmel_quincy@ernser.io"},

@@ -37,11 +37,11 @@ As a user, so that I can retrieve the correct information, I want to be able to 
 
 ### Challenges and Future Improvements
 
-When testing the DataFetcher class, I struggled to stub the API call, in order to not continuously be pinging the API I chose to comment the tests out. However given more time I would like to have done this so all the code was covered.
+When testing the DataFetcher class, I struggled to stub the API call, in order to not continuously be pinging the API I chose to comment the tests out. However, given more time I would like to have achieved this so all the code was covered.
 
-In the Controller and Calculator spec, the test data is repeated twice, this doesn't coincide with DRY and agile methodology, but this could of been solved by extracting the data to a helper method.
+In the Controller and Calculator spec files the test data is repeated twice, this doesn't coincide with DRY and agile methodology, but this could of been solved by extracting the data to a helper method.
 
-In the Controller class, in the run function I had to write another function, puts_and_return, in order to pass the tests and still be functional to the user. This is not ideal and looks very messy, some further research would be required to see if a statement like puts exists that serves the same function.
+In the run function of the Controller class, I had to write another function, puts_and_return, in order to pass the tests and still be functional to the user. This is not ideal and looks very messy, some further research would be required to see if a statement like 'puts' exists that serves the same function.
 
 The biggest challenge was the highest_value command. Although it works and returns the right answer, its very inefficient when scaled up. This is something I would like to improve as efficiency is something I'm having to overcome more and more, with little experience previously. I started to identify the section of code that is slow: ```ids.each { |id| arr.push(id => total_spend(id, data)) }```, I believe it is because it is iterating over the data so many unnecessary times. Adding some code that deleted the data once it had been processed would speed it up massively.
 

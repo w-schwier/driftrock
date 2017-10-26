@@ -13,7 +13,7 @@ Thinking about what needed to happen, the first thing was fetching the data from
 
 Next I needed a class to control what happens when the user has given a command. The Controller class is the main core of the code. It tells the DataFetcher class to load the data, then starts the according function to complete the task. I originally extracted some logic out to a command class, but I realised I was parsing a lot of data through and repeating myself. So I took a step back and realised I didn't need it. This also happened with the Calculator class; originally I had two, one for users and one for purchases, but once again I stopped and realised it was unnecessary.
 
-The Calculator class gets the correct data based on the command given. Some of the command were straight forward once the user id was found, eg. total_spend and average_spend. However, highest_value was more problematic and is still rather messy.
+The Calculator class gets the correct data based on the command given. Some of the commands were straight forward once the user id was found, eg. total_spend and average_spend. However, highest_value was more problematic and is still rather messy.
 
 All the above was achieved using TDD to structure the code.
 

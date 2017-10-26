@@ -1,14 +1,13 @@
-# API Querier
+# Driftrock API Querier
 
 ### What is it?
 
-This command line program takes one of five commands and an optional parameter. It will then return the desired response.
+This command line program takes one of five commands and an optional parameter. It will then return the desired response. (See below for commands)
 
 
 ### My Approach
 
 I first started by thinking about how all the code needed to interact in order to achieve the end goal. The first port of call was the app.rb, where the rest of the code would be executed.
-
 
 Thinking about what needed to happen, the first thing was fetching the data from the API. This required some research into the best way to access the data in a format that was easy to manipulate. Httparty was the gem I found to satisfy these criteria. The way the API is designed required incrementing the page number and grabbing the data till the end was reached (an unknown point till reached). This was done using string interpolation into the url with variables for the type, ie users or purchases, and page number; returning the data in an array.
 

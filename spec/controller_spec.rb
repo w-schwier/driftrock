@@ -57,7 +57,7 @@ describe Controller do
     expect(controller.run(["most_loyal"])).to eq "schimmel_quincy@ernser.io"
   end
 
-  xit 'checks the corrct email is returned for highest value' do
+  it 'checks the corrct email is returned for highest value' do
     expect(controller.run(["highest_value"])).to eq "schimmel_quincy@ernser.io"
   end
 

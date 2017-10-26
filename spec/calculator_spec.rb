@@ -29,7 +29,7 @@ describe Calculator do
     expect(calculator.most_loyal(purchase_data)).to eq "0000-0000-0000-0000"
   end
 
-  xit 'checks the correct highest value id is returned' do
+  it 'checks the correct highest value id is returned' do
     expect(calculator.highest_value(purchase_data)).to eq "0000-0000-0000-0000"
   end
 
